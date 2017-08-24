@@ -5,7 +5,9 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleone = {
+
+var articles = {
+articleOne : {
 title:'Article One: Rajeev Rana',
 heading:'Article One',
 date: '22 sept 2017',
@@ -18,8 +20,32 @@ content:`
                 This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
                 This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
             </p>`
+},
+articleTwo : {
+    title:'Article Two: Rajeev Rana',
+heading:'Article Two',
+date: '22 sept 2018',
+content:`
+           <p>
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+            </p>
+             <p>
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+            </p>`},
+articleThree : {
+    title:'Article Three: Rajeev Rana',
+heading:'Article Three',
+date: '22 sept 2019',
+content:`
+          
+             <p>
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+            </p>`
+}
 };
-
 
 function createTemplate (data){
   var date = data.date;
@@ -63,7 +89,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res){
+app.get('/:articleName', function (req, res){
    res.send(createTemplate(articleone));
 });
 
