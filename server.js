@@ -5,12 +5,66 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articleone = {
+title:'Article One: Rajeev Rana',
+heading:'Article One',
+date: '22 sept 2017',
+content:`
+           <p>
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+            </p>
+             <p>
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+                This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.This is my own article for the own company.
+            </p>`
+};
+
+
+function createTemplate (data){
+  var date = data.date;
+  var title = data.title;
+  var heading = data.heading;
+  var content = data.contene;
+  
+    var htmlTemplate = `
+    <!doctype html>
+    <html>
+        <head>
+            <title>  ${title} </title>
+        
+        <meta name="viewport" content="width=width-device, initial-scale=1" />
+        <link href="/ui/style.css" rel="stylesheet" />
+           
+       </head>
+       <body>
+          <div class="container"> 
+            <div>
+                <a href="/"> Home </a>
+            </div>
+            <hr/>
+            <h3>
+                ${heading}
+            </h3>
+            <div>
+                ${date}
+            </div>
+            <div>
+               ${content}
+            </div>
+        </div>    
+        </body>
+
+        </html>     `;
+        return htmlTemplate;
+}
+          
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one', function (req, res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+   res.send(createTemplate(articleone));
 });
 
 app.get('/article-two', function(req, res){
@@ -37,3 +91,12 @@ var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
+
+
+
+
+
+
+
+
+
